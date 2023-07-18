@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Livres from './components/Livres';
 import Recherche from './components/Recherche';
 import Categories from './components/Categories';
+import Ajout from './components/Ajout';
 
 import { LIVRES } from './data/data';
 import { useEffect } from 'react';
@@ -57,6 +58,7 @@ export default function App() {
                 <Tab.Screen name='Livres' component={Livres} />
                 <Tab.Screen name='Recherche' component={Recherche} />
                 <Tab.Screen name='Catégories' component={Categories} />
+                <Tab.Screen name='Ajout' component={Ajout} />
             </Tab.Navigator>
         </NavigationContainer>
   );
