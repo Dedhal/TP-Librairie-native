@@ -1,5 +1,7 @@
-﻿import { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
+
+import { useFocusEffect } from '@react-navigation/native';
 
 import { CATEGORIES } from '../data/data'
 
@@ -35,6 +37,13 @@ export default function Categories({ navigation }) {
 
         console.log(CATEGORIES[0].id)
     }, [])
+
+    useFocusEffect(
+        React.useCallback(() => {
+            retrieveData();
+            setRecherche(livres);
+        }, [])
+    )
 
     const Recherche = (catId) => {
         setRecherche(livres.filter(livre => livre.categorieId.includes(catId)))

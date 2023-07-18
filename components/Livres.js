@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -12,20 +12,27 @@ import ListeLivre from './ListeLivre';
 export default function Livres({ navigation }) {
     [Livres, setLivres] = useState([]);
 
-    useEffect(() => {
-        const retrieveData = async () => {
-            try {
-                const value = await AsyncStorage.getItem('livres');
-                if (value !== null) {
-                    setLivres(JSON.parse(value))
-                    console.log(value);
-                }
-            } catch (error) {
-                console.log(error)
+    const retrieveData = async () => {
+        try {
+            const value = await AsyncStorage.getItem('livres');
+            if (value !== null) {
+                setLivres(JSON.parse(value))
+                console.log(value);
             }
-        };
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    useEffect(() => {
         retrieveData();
     }, [])
+
+    useFocusEffect(
+        React.useCallback(() => {
+            retrieveData();
+        }, [])
+    )
 
     const Item = ({ title, description, tomes, imageUrl }) => (
         <View style={styles.card}>

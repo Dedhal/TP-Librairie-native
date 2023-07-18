@@ -26,7 +26,7 @@ export default function Ajout({ navigation }) {
                 id: newArray.length + 1,
                 titre: titre,
                 description: description,
-                nbTomes: nbTomes,
+                tomes: nbTomes,
                 image: image,
                 categorieId: selected,
             })

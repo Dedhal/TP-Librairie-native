@@ -1,5 +1,7 @@
 ﻿import { Text, View, StyleSheet, Image, Button, Modal, TextInput } from 'react-native';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useFocusEffect } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -32,6 +34,13 @@ export default function Recherche({ navigation }) {
         retrieveData();
         setRecherche(livres);
     }, [])
+
+    useFocusEffect(
+        React.useCallback(() => {
+            retrieveData();
+            setRecherche(livres);
+        }, [])
+    );
 
     const Recherche = (textInput) => {
         setRecherche(livres.filter(livre => livre.titre.includes(textInput)));
