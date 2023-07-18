@@ -32,8 +32,11 @@ export default function Recherche({ navigation }) {
 
     useEffect(() => {
         retrieveData();
-        setRecherche(livres);
     }, [])
+
+    useEffect(() => {
+        setRecherche(livres);
+    }, [livres])
 
     useFocusEffect(
         React.useCallback(() => {
@@ -43,7 +46,7 @@ export default function Recherche({ navigation }) {
     );
 
     const Recherche = (textInput) => {
-        setRecherche(livres.filter(livre => livre.titre.includes(textInput)));
+        setRecherche(livres.filter(livre => livre.titre.toLowerCase().includes(textInput.toLowerCase())));
     }
 
     return (

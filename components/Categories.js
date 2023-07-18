@@ -53,7 +53,7 @@ export default function Categories({ navigation }) {
         <View style={styles.main}>
             {
                 CATEGORIES.map((e) => (
-                    <View key={e.id}>
+                    <View key={e.id} style={styles.categorie}>
                         <Button title={e.genre} color={e.couleur} onPress={() => Recherche(e.id) } />
                         {console.log(e)}
                     </View>
@@ -75,4 +75,7 @@ const styles = StyleSheet.create({
         width: '95%',
         borderRadius: 10,
     },
+    categorie: {
+        marginBottom: 10,
+        }
 })
